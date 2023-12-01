@@ -3,11 +3,14 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import theme from './theme';
+import { Typography } from '@mui/material';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello home!</div>,
+    element: <Typography variant="h2">Hello home!</Typography>,
   },
   {
     path: "/about",
@@ -21,9 +24,14 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div id="App">
-      <RouterProvider router={router} />
-    </div>
+    <>
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
+        <div id="App">
+          <RouterProvider router={router} />
+        </div>
+      </ThemeProvider>
+    </>
   );
 }
 
