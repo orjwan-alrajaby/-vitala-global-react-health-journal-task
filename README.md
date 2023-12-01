@@ -1,1 +1,1 @@
-# -vitala-global-react-health-journal-task
+# vitala-global-react-health-journal-task
