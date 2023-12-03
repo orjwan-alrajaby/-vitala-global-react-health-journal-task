@@ -6,6 +6,7 @@ import {
   FONT_SIZE,
   LINE_HEIGHT
 } from './fonts';
+import BREAKPOINTS from './breakpoints';
 
 const theme = createTheme({
   palette: {
@@ -25,14 +26,27 @@ const theme = createTheme({
       default: COLORS.background
     }
   },
+  breakpoints: {
+    values: {
+      xs: BREAKPOINTS.xs,
+      sm: BREAKPOINTS.sm,
+      md: BREAKPOINTS.md,
+      lg: BREAKPOINTS.lg,
+      xl: BREAKPOINTS.xl,
+    },
+  },
   typography: {
     fontFamily: `${FONT_FAMILY.raleway}, Arial`,
     htmlFontSize: 16,
     h1: {
-      fontSize: FONT_SIZE["40"],
-      lineHeight: LINE_HEIGHT["40"],
+      fontSize: FONT_SIZE["32"],
+      lineHeight: LINE_HEIGHT["32"],
       fontWeight: FONT_WEIGHT.bold,
-      color: COLORS.palette.white
+      color: COLORS.palette.white,
+      [`@media (min-width: ${BREAKPOINTS.sm})`]: {
+        fontSize: FONT_SIZE["40"],
+        lineHeight: LINE_HEIGHT["40"],
+      }
     },
     h2: {
       fontSize: FONT_SIZE["32"],

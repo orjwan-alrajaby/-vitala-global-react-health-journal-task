@@ -1,5 +1,5 @@
 const FONT_FAMILY = {
-  raleway: "raleway",
+  raleway: "Raleway",
 }
 
 const FONT_WEIGHT = {
