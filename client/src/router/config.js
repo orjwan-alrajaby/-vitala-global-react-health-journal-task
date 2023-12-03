@@ -2,7 +2,9 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import { Typography } from '@mui/material';
-import { StandardLayout } from 'components/layouts'
+import { StandardLayout } from 'components/layouts';
+import { HomePage } from 'components/pages';
+import { NAV_LINKS } from "constants/links"
 
 const routerConfig = createBrowserRouter([
   {
@@ -10,12 +12,16 @@ const routerConfig = createBrowserRouter([
     element: <StandardLayout />,
     children: [
       {
-        path: "/my-activities",
-        element:
-          <Typography variant="h2">Hello home!</Typography>
+        path: NAV_LINKS.home.href,
+        index: true,
+        element: <HomePage />,
       },
       {
-        path: "/my-goals",
+        path: NAV_LINKS.myActivity.href,
+        element: <Typography variant="h2">Hello activities!</Typography>,
+      },
+      {
+        path: NAV_LINKS.myGoals.href,
         element: <div>Hello about!</div>,
       },
     ],

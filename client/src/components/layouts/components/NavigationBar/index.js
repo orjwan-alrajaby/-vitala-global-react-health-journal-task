@@ -4,13 +4,19 @@ import { Box, Toolbar, Typography, IconButton, Divider, Drawer, List, ListItem, 
 import MenuIcon from '@mui/icons-material/Menu';
 import { FONT_FAMILY, FONT_WEIGHT } from 'theme/fonts';
 import COLORS from 'theme/colors';
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import BREAKPOINTS from 'theme/breakpoints';
 import {
   NAV_LINKS
 } from "constants/links"
 
 const DrawerAppBar = (props) => {
+  const navItems = Object.keys(NAV_LINKS).reduce((accum, element) => {
+    if (!element.href === "/") {
+      accum.push(element)
+    }
+    return accum;
+  }, [])
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -28,7 +34,7 @@ const DrawerAppBar = (props) => {
       }}
       />
       <List>
-        {NAV_LINKS.map((item) => (
+        {navItems.map((item) => (
           <ListItem key={item.name}
             disablePadding
             sx={{ margin: "0px auto 10px", width: "fit-content" }}>
@@ -63,11 +69,16 @@ const DrawerAppBar = (props) => {
         <Toolbar sx={{ display: "flex", justifyContent: 'space-between' }}>
           <Typography
             variant="h1"
+            component={Link}
+            to={NAV_LINKS.home.href}
+            sx={{
+              textDecoration: "none"
+            }}
           >
             SelfCare
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {NAV_LINKS.map((item) => (
+            {navItems.map((item) => (
               <Button key={item.name} to={item.href} component={NavLink}
                 sx={{
                   color: COLORS.palette.white,
