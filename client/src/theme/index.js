@@ -69,7 +69,7 @@ const theme = createTheme({
     subtitle2: {
       fontSize: FONT_SIZE["16"],
       lineHeight: LINE_HEIGHT["16"],
-      fontWeight: FONT_WEIGHT.medium,
+      fontWeight: FONT_WEIGHT.semiBold,
       color: COLORS.palette.amethyst
     },
     body1: {

@@ -3,6 +3,10 @@ const NAV_LINKS = {
     name: 'Home',
     href: "/"
   },
+  createActivity: {
+    name: "Create Activity",
+    href: "/create-activity"
+  },
   myActivity: {
     name: 'My Activities',
     href: "/my-activities"

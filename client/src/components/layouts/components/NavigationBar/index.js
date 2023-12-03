@@ -11,12 +11,13 @@ import {
 } from "constants/links"
 
 const DrawerAppBar = (props) => {
-  const navItems = Object.keys(NAV_LINKS).reduce((accum, element) => {
-    if (!element.href === "/") {
+  const navItems = Object.values(NAV_LINKS).reduce((accum, element) => {
+    if (element.href !== "/") {
       accum.push(element)
     }
     return accum;
   }, [])
+  console.log("navItems", navItems)
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
