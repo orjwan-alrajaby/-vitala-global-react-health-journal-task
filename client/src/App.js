@@ -1,37 +1,19 @@
 import './App.css';
 import {
-  createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from './theme';
-import { Typography } from '@mui/material';
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Typography variant="h2">Hello home!</Typography>,
-  },
-  {
-    path: "/about",
-    element: <div>Hello about!</div>,
-  },
-  {
-    path: "/contact",
-    element: <div>Hello contact!</div>,
-  },
-]);
+import routerConfig from "./router/config";
 
 function App() {
   return (
-    <>
+    <div id="App">
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <div id="App">
-          <RouterProvider router={router} />
-        </div>
+        <RouterProvider router={routerConfig} />
       </ThemeProvider>
-    </>
+    </div>
   );
 }
 
