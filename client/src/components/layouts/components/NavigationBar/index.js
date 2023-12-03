@@ -1,24 +1,14 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
+import { Box, Toolbar, Typography, IconButton, Divider, Drawer, List, ListItem, ListItemButton, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import Button from '@mui/material/Button';
-import { FONT_FAMILY, FONT_WEIGHT } from '../../../../theme/fonts';
-import COLORS from '../../../../theme/colors';
+import { FONT_FAMILY, FONT_WEIGHT } from 'theme/fonts';
+import COLORS from 'theme/colors';
 import { NavLink } from "react-router-dom";
-import BREAKPOINTS from '../../../../theme/breakpoints';
+import BREAKPOINTS from 'theme/breakpoints';
 import {
   NAV_LINKS
-} from "../../../constants/links"
+} from "constants/links"
 
 const DrawerAppBar = (props) => {
   const { window } = props;
@@ -65,7 +55,6 @@ const DrawerAppBar = (props) => {
 
   return (
     <Box>
-      <CssBaseline />
       <AppBar component="nav" position="sticky" sx={{
         right: "auto",
         left: "auto",

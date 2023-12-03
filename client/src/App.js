@@ -3,8 +3,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import theme from './theme';
-import routerConfig from "./router/config";
+import theme from 'theme';
+import routerConfig from "router/config";
 
 function App() {
   return (

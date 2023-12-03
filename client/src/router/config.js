@@ -2,7 +2,7 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import { Typography } from '@mui/material';
-import { StandardLayout } from './components/layouts'
+import { StandardLayout } from 'components/layouts'
 
 const routerConfig = createBrowserRouter([
   {
