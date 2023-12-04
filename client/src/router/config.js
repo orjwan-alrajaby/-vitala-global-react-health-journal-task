@@ -3,7 +3,7 @@ import {
 } from "react-router-dom";
 import { Typography } from '@mui/material';
 import { StandardLayout } from 'components/layouts';
-import { HomePage, CreateActivityPage } from 'components/pages';
+import { HomePage, CreateActivityPage, MyActivitiesPage } from 'components/pages';
 import { NAV_LINKS } from "constants/links"
 
 const routerConfig = createBrowserRouter([
@@ -18,7 +18,7 @@ const routerConfig = createBrowserRouter([
       },
       {
         path: NAV_LINKS.myActivity.href,
-        element: <Typography variant="h2">Hello activities!</Typography>,
+        element: <MyActivitiesPage />,
       },
       {
         path: NAV_LINKS.createActivity.href,

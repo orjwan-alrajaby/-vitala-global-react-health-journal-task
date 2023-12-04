@@ -16,7 +16,7 @@ const Button = ({ label, onClick, variant, isLoading }) => {
     onClick={onClick}
     disabled={isLoading}
   >
-    <Typography variant="subtitle2" color="white" sx={{
+    <Typography variant="h4" color="white" sx={{
       position: "relative"
     }}>{label}
       {isLoading && <CircularProgress color="primary" size={20} sx={{

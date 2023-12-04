@@ -4,10 +4,11 @@ const COLORS = {
   background: "#F9F9F9",
   palette: {
     white: "#FFFFFF",
+    black: "#000000",
     lightLavendar: "#EDECF4",
     softPurple: "#D8D2FF",
     amethyst: "#7B6BA8",
-    fadedPurple: "82799D"
+    fadedPurple: "#82799D"
   }
 }
 

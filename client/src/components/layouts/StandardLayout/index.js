@@ -3,14 +3,14 @@ import { Outlet } from "react-router-dom";
 import Box from '@mui/material/Box';
 import NavigationBar from '../components/NavigationBar';
 import COLORS from 'theme/colors';
-import { StyledContainer } from "./styles.js"
+import { StyledContainer, StyledBox } from "./styles.js"
 
 const StandardLayout = () => {
   return <StyledContainer maxWidth="lg">
     <NavigationBar />
-    <Box sx={{ bgcolor: COLORS.background, height: '100vh', padding: "24px" }}>
-      <Outlet/>
-    </Box>
+    <StyledBox sx={{ bgcolor: COLORS.background, height: '100vh', minHeight: "100vh", maxHeight: "100vh", overflow: "auto", padding: "24px" }}>
+      <Outlet />
+    </StyledBox>
   </StyledContainer>
 }
 

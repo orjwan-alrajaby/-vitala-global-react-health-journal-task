@@ -2,14 +2,13 @@ import * as React from 'react';
 import { InputLabel, MenuItem, Select } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-const BasicSelect = ({ label, options = [], value, handleSelectChange }) => {
+const BasicSelect = ({ label, options = [], value, placeholder, handleSelectChange }) => {
   return (
     <>
-      <InputLabel id="basic-select">{label}</InputLabel>
+      <InputLabel>{label}</InputLabel>
       <Select
         fullWidth
         labelId="basic-select"
-        id="basic-select"
         value={value}
         label={label}
         onChange={handleSelectChange}

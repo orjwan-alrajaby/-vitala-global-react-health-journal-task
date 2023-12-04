@@ -60,10 +60,16 @@ const theme = createTheme({
       fontWeight: FONT_WEIGHT.semiBold,
       color: COLORS.primary
     },
-    subtitle1: {
+    h4: {
       fontSize: FONT_SIZE["20"],
       lineHeight: LINE_HEIGHT["20"],
       fontWeight: FONT_WEIGHT.bold,
+      color: COLORS.palette.white
+    },
+    subtitle1: {
+      fontSize: FONT_SIZE["20"],
+      lineHeight: LINE_HEIGHT["20"],
+      fontWeight: FONT_WEIGHT.medium,
       color: COLORS.palette.white
     },
     subtitle2: {
@@ -73,8 +79,8 @@ const theme = createTheme({
       color: COLORS.palette.amethyst
     },
     body1: {
-      fontSize: FONT_SIZE["14"],
-      lineHeight: LINE_HEIGHT["14"],
+      fontSize: FONT_SIZE["16"],
+      lineHeight: LINE_HEIGHT["16"],
       fontWeight: FONT_WEIGHT.medium,
       color: COLORS.palette.amethyst
     },
