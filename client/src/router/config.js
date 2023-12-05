@@ -4,7 +4,8 @@ import {
 import { Typography } from '@mui/material';
 import { StandardLayout } from 'components/layouts';
 import { HomePage, CreateActivityPage, MyActivitiesPage } from 'components/pages';
-import { NAV_LINKS } from "constants/links"
+import { NAV_LINKS } from "constants/links";
+import { ActivityContextProvider } from "context"
 
 const routerConfig = createBrowserRouter([
   {
@@ -17,12 +18,14 @@ const routerConfig = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: NAV_LINKS.myActivity.href,
-        element: <MyActivitiesPage />,
+        path: NAV_LINKS.myActivities.href,
+        element: <ActivityContextProvider>
+          <MyActivitiesPage />
+        </ActivityContextProvider>,
       },
       {
         path: NAV_LINKS.createActivity.href,
-        element: <CreateActivityPage />,
+        element: <ActivityContextProvider><CreateActivityPage /></ActivityContextProvider>,
       },
       {
         path: NAV_LINKS.myGoals.href,

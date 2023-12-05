@@ -7,7 +7,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(NAV_LINKS.myActivity.href)
+    navigate(NAV_LINKS.myActivities.href)
   }, [navigate])
 
   return <Box sx={{

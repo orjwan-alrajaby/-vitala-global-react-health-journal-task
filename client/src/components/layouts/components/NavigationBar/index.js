@@ -17,7 +17,7 @@ const DrawerAppBar = (props) => {
     }
     return accum;
   }, [])
-  console.log("navItems", navItems)
+  
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 

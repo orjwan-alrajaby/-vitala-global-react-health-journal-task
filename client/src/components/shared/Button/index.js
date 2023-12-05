@@ -2,7 +2,7 @@ import React from "react"
 import MuiButton from '@mui/material/Button';
 import { CircularProgress, Typography } from "@mui/material";
 
-const Button = ({ label, onClick, variant, isLoading, styles }) => {
+const Button = ({ label, onClick, variant, isLoading, isDisabled, styles }) => {
   return <MuiButton
     variant={variant || "contained"}
     color="primary"
@@ -15,7 +15,7 @@ const Button = ({ label, onClick, variant, isLoading, styles }) => {
     }}
     onSubmit={onClick}
     onClick={onClick}
-    disabled={isLoading}
+    disabled={isDisabled || isLoading}
   >
     <Typography variant="subtitle1" color="white" sx={{
       position: "relative"

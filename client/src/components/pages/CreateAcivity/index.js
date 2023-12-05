@@ -1,28 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useContext, useCallback, useEffect } from 'react';
 import { Box, Typography, FormControl } from '@mui/material';
 import { OutlinedTextField, CustomDivider, BasicSelect, Button } from "components/shared";
 import { typeOptions } from "constants/typeOptions";
-import { useCreateEntry } from 'hooks';
+import { ActivityContext } from 'context';
+import { v4 as uuid } from 'uuid';
+import dayjs from 'dayjs';
+import { useNavigate } from "react-router-dom";
+import { NAV_LINKS } from "constants/links"
+
+const formattedDate = dayjs().format('ddd, MMM D, YYYY h:mm A');
 
 const CreateActivityPage = () => {
-  const { data, isLoading, error, createEntry } = useCreateEntry();
+  const navigate = useNavigate();
+  const { activityState, setActivityState } = useContext(ActivityContext)
   const [entry, setEntry] = useState({
+    id: uuid(),
     title: "",
     description: "",
-    type: ""
+    type: "",
+    created_at: formattedDate,
+    modified_at: formattedDate
   });
 
-  const handleInputChange = ({ target: { name, value } }) => {
+  const handleInputChange = useCallback(({ target: { name, value } }) => {
     const keyName = name || "type";
     setEntry((prev) => ({
       ...prev,
       [keyName]: value
     }));
-  };
+  }, []);
 
-  const submitActivity = async () => {
-     await createEntry(entry);
-  }
+  const submitActivity = useCallback(() => {
+    const newList = [...activityState.list, entry];
+    setActivityState((prev) => ({
+      ...prev,
+      list: newList,
+      listLength: newList.length
+    }));
+    navigate(NAV_LINKS.myActivities.href);
+  }, [activityState.list, entry, navigate, setActivityState])
 
 
   return (
@@ -80,7 +96,7 @@ const CreateActivityPage = () => {
             handleSelectChange={handleInputChange}
           />
         </FormControl>
-        <Button label="Create" onClick={submitActivity} isLoading={isLoading} />
+        <Button label="Create" onClick={submitActivity} isDisabled={Boolean(!entry.title) || Boolean(!entry.description) || Boolean(!entry.type)} />
       </Box>
     </Box>
   );

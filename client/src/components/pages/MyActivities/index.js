@@ -1,12 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { Box, FormControl, Typography } from '@mui/material';
 import { CustomDivider, SearchBar, EntriesList, BasicSelect, Button } from 'components/shared';
 import Grid from '@mui/material/Grid';
 import { ACTIVITIES } from "database";
 import { typeOptions } from "constants/typeOptions";
+import { ActivityContext } from 'context';
+import { NAV_LINKS } from 'constants/links';
 
 const MyActivitiesPage = () => {
-  const [list, setList] = useState(ACTIVITIES || []);
+  const { activityState, setActivityState } = useContext(ActivityContext)
+  const [filteredList, setFilteredList] = useState(activityState.list || [])
   const [filters, setFilters] = useState({
     searchTerm: "",
     typeOption: ""
@@ -16,39 +19,39 @@ const MyActivitiesPage = () => {
     e.preventDefault();
     let filtered = [];
     if (!!!filters.searchTerm && !!!filters.typeOption) {
-      filtered = ACTIVITIES;
+
+      filtered = activityState.list;
     } else if (filters.searchTerm && filters.typeOption) {
-      filtered = ACTIVITIES.filter(ele => ele.title.toLowerCase().includes(filters.searchTerm) && ele.type.toLowerCase() === filters.typeOption);
+
+      filtered = activityState.list.filter(ele => ele.title.toLowerCase().includes(filters.searchTerm) && ele.type.toLowerCase() === filters.typeOption);
     } else if (filters.searchTerm) {
-      filtered = ACTIVITIES.filter(ele => ele.title.includes(filters.searchTerm));
+
+      filtered = activityState.list.filter(ele => ele.title.toLowerCase().includes(filters.searchTerm));
     } else if (filters.typeOption) {
-      filtered = ACTIVITIES.filter(ele => ele.type.toLowerCase() === filters.typeOption);
+
+      filtered = activityState.list.filter(ele => ele.type.toLowerCase() === filters.typeOption);
     }
-    setList(filtered)
-  }, [filters.searchTerm, filters.typeOption]);
+    setFilteredList(filtered)
+  }, [activityState.list, filters.searchTerm, filters.typeOption, setActivityState]);
 
   const handleFiltersChange = useCallback(({ target: { value } }, keyName) => {
-    const lowercase_val = value.toLowerCase();
+    const lowercaseVal = value.toLowerCase();
     setFilters((prev) => ({
       ...prev,
-      [keyName]: lowercase_val
+      [keyName]: lowercaseVal
     }));
   }, [])
 
   useEffect(() => {
-    console.log("filters", filters)
-  }, [filters])
-
-  useEffect(() => {
-    console.log("list", list)
-  }, [list])
+    console.log("activityState.list", activityState.list)
+  }, [activityState.list])
 
   return (
     <Box>
       <Grid container justifyContent="space-between">
         <Grid item xs={12} sm={7}>
           <Typography variant="h2" component="h1">
-            MY ACTIVITIES {ACTIVITIES.length && `(${list.length})`}
+            MY ACTIVITIES {filteredList.length && `(${filteredList.length})`}
           </Typography>
         </Grid>
         <Grid item xs={12} sm={7}>
@@ -66,7 +69,7 @@ const MyActivitiesPage = () => {
       >
         <Grid item xs={12} sm={7}>
           {
-            list && list.length > 0 ? <EntriesList itemsList={list} /> : <Typography variant="h4" color="red">
+            filteredList && filteredList.length > 0 ? <EntriesList itemsList={filteredList} itemsUrl={NAV_LINKS.myActivities.href} /> : <Typography variant="h4" color="red">
               No activities were found!
             </Typography>
           }
