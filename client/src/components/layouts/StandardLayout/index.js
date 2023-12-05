@@ -6,12 +6,28 @@ import COLORS from 'theme/colors';
 import { StyledContainer, StyledBox } from "./styles.js"
 
 const StandardLayout = () => {
-  return <StyledContainer maxWidth="lg">
-    <NavigationBar />
-    <StyledBox sx={{ bgcolor: COLORS.background, height: '100vh', minHeight: "100vh", maxHeight: "100vh", overflow: "auto", padding: "24px" }}>
-      <Outlet />
-    </StyledBox>
-  </StyledContainer>
+  return <Box sx={{
+    bgcolor: "#1E1E1E",
+    minHeight: "100vh",
+    paddingRight: "0px",
+    paddingLeft: "0px",
+  }}>
+    <StyledContainer maxWidth="lg" sx={{
+      paddingRight: "0px",
+      paddingLeft: "0px",
+      backgroundColor: COLORS.background,
+      minHeight: "100vh",
+    }}>
+      <Box>
+        <NavigationBar />
+        <StyledBox>
+          <Outlet />
+        </StyledBox>
+      </Box>
+    </StyledContainer>
+  </Box>
 }
 
 export default StandardLayout;
+
+// 64 + 48 + 36 = c

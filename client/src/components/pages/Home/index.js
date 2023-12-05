@@ -14,7 +14,7 @@ const HomePage = () => {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "100vh"
+    height: "800px"
   }}>
     <CircularProgress />
   </Box>
