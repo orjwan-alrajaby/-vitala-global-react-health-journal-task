@@ -1,5 +1,4 @@
 import { createContext, useState } from 'react';
-import { ACTIVITIES } from "database";
 
 const generateState = () => ({ list: [] })
 
