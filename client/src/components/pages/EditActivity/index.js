@@ -1,18 +1,20 @@
 import React, { useState, useContext, useCallback, useEffect } from 'react';
-import { Box, Typography, FormControl } from '@mui/material';
+import { Box, Typography, FormControl, Button as MuiButton } from '@mui/material';
 import { OutlinedTextField, CustomDivider, BasicSelect, Button } from "components/shared";
 import { typeOptions } from "constants/typeOptions";
 import { ActivityContext } from 'context';
-import { v4 as uuid } from 'uuid';
 import dayjs from 'dayjs';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ROUTE_LINKS } from "constants/links"
 
-const CreateActivityPage = () => {
+const EditActivityPage = () => {
   const navigate = useNavigate();
+  const params = useParams();
+
   const { activityState, setActivityState } = useContext(ActivityContext)
+
   const [entry, setEntry] = useState({
-    id: uuid(),
+    id: "",
     title: "",
     description: "",
     type: "",
@@ -28,17 +30,28 @@ const CreateActivityPage = () => {
     }));
   }, []);
 
-  const submitActivity = useCallback(() => {
+  const handleEditActivity = useCallback(() => {
     const formattedDate = dayjs().format('ddd, MMM D, YYYY h:mm A');
-    entry.created_at = formattedDate;
     entry.last_modified_at = formattedDate;
-    const newList = [...activityState.list, entry];
+    const filteredState = activityState.list.filter(ele => ele.id !== params.id);
+    const newList = [...filteredState, entry];
     setActivityState((prev) => ({
       ...prev,
-      list: newList,
+      list: newList
     }));
     navigate(ROUTE_LINKS.myActivities.href);
-  }, [activityState.list, entry, navigate, setActivityState])
+  }, [activityState.list, entry, navigate, params.id, setActivityState])
+
+  useEffect(() => {
+    if (Boolean(params.id)) {
+      const currentEntry = activityState.list.find(ele => ele.id === params.id);
+      if (Boolean(currentEntry)) {
+        setEntry(currentEntry);
+      } else {
+        navigate(ROUTE_LINKS.notFound.href)
+      }
+    }
+  }, [activityState.list, navigate, params.id])
 
   return (
     <Box>
@@ -51,10 +64,7 @@ const CreateActivityPage = () => {
           margin: "0px auto"
         }}
       >
-        Have you taken any steps towards self-improvement today?
-      </Typography>
-      <Typography variant="h3" textAlign="center">
-        Record your activities!
+        Edit Activity
       </Typography>
       <CustomDivider color={"rgba(67, 44, 129, 0.25)"} maxWidth="600px" />
       <Box
@@ -95,10 +105,18 @@ const CreateActivityPage = () => {
             handleSelectChange={handleInputChange}
           />
         </FormControl>
-        <Button label="Create" onClick={submitActivity} isDisabled={Boolean(!entry.title) || Boolean(!entry.description) || Boolean(!entry.type)} />
+        <Button label="Edit" onClick={handleEditActivity} isDisabled={Boolean(!entry.title) || Boolean(!entry.description) || Boolean(!entry.type)} />
+        <MuiButton component={Link} to={ROUTE_LINKS.home.href} variant="outlined" sx={{
+          display: "block",
+          margin: "16px auto",
+          width: "479px",
+          height: "42px",
+        }}>
+          <Typography variant="subtitle1" textAlign="center" color="primary">Cancel</Typography>
+        </MuiButton>
       </Box>
     </Box>
   );
 };
 
-export default CreateActivityPage;
+export default EditActivityPage;

@@ -7,7 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from "react-router-dom";
 
-const EntryCard = ({ title, description, type, created_at, itemUrl }) => {
+const EntryCard = ({ title, description, type, created_at, editUrl, deleteUrl }) => {
   return (
     <Card sx={{ position: "relative", minHeight: "150px", width: "100%" }}>
       <CardHeader
@@ -15,10 +15,10 @@ const EntryCard = ({ title, description, type, created_at, itemUrl }) => {
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: "15px" }}>
             <Typography variant="h4" component="h3" textTransform="uppercase" color="primary">{title}</Typography>
             <Box sx={{ minWidth: "60px" }}>
-              <Link to={itemUrl || "#"}>
+              <Link to={editUrl || "#"}>
                 <EditIcon sx={{ marginLeft: "5px" }} />
               </Link>
-              <Link to={itemUrl || "#"}>
+              <Link to={deleteUrl || "#"}>
                 <DeleteIcon sx={{ marginLeft: "5px" }} />
               </Link>
             </Box>

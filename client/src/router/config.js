@@ -1,10 +1,9 @@
 import {
   createBrowserRouter,
 } from "react-router-dom";
-import { Typography } from '@mui/material';
 import { StandardLayout } from 'components/layouts';
-import { HomePage, CreateActivityPage, MyActivitiesPage } from 'components/pages';
-import { NAV_LINKS } from "constants/links";
+import { HomePage, CreateActivityPage, MyActivitiesPage, EditActivityPage, NotFoundPage, DeleteActivityPage } from 'components/pages';
+import { ROUTE_LINKS } from "constants/links";
 import { ActivityContextProvider } from "context"
 
 const routerConfig = createBrowserRouter([
@@ -13,24 +12,32 @@ const routerConfig = createBrowserRouter([
     element: <StandardLayout />,
     children: [
       {
-        path: NAV_LINKS.home.href,
+        path: ROUTE_LINKS.home.href,
         index: true,
-        element: <HomePage />,
+        element: <ActivityContextProvider><HomePage /></ActivityContextProvider>,
       },
       {
-        path: NAV_LINKS.myActivities.href,
+        path: ROUTE_LINKS.myActivities.href,
         element: <ActivityContextProvider>
           <MyActivitiesPage />
         </ActivityContextProvider>,
       },
       {
-        path: NAV_LINKS.createActivity.href,
+        path: ROUTE_LINKS.createActivity.href,
         element: <ActivityContextProvider><CreateActivityPage /></ActivityContextProvider>,
       },
       {
-        path: NAV_LINKS.myGoals.href,
-        element: <div>Hello about!</div>,
+        path: ROUTE_LINKS.editActivity.href,
+        element: <ActivityContextProvider><EditActivityPage /></ActivityContextProvider>,
       },
+      {
+        path: ROUTE_LINKS.deleteActivity.href,
+        element: <ActivityContextProvider><DeleteActivityPage /></ActivityContextProvider>,
+      },
+      {
+        path: ROUTE_LINKS.notFound.href,
+        element: <NotFoundPage />
+      }
     ],
   },
 ]);
